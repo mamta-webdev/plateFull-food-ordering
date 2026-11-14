@@ -1,0 +1,353 @@
+/* =========================================================
+   COMMENTS PANEL
+   Every class is prefixed with "cmt-" so no other stylesheet
+   in the project can collide with it. The reset below also
+   blocks global rules (borders, backgrounds, button styles).
+   ========================================================= */
+
+/* ---------- RESET (stops outside CSS leaking in) ---------- */
+
+.cmt-root,
+.cmt-root * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    box-shadow: none;
+    text-shadow: none;
+    background: none;
+    border-radius: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: inherit;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.cmt-root *::before,
+.cmt-root *::after {
+    content: none;
+}
+
+
+/* ---------- OVERLAY ---------- */
+
+.cmt-root.cmt-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+
+    width: 100vw !important;
+    height: 100vh !important;
+
+    z-index: 999999 !important;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-end !important;
+
+    background: rgba(5, 10, 30, 0.6) !important;
+
+    backdrop-filter: blur(3px);
+
+    animation: cmtFade 0.2s ease-out;
+}
+
+
+/* ---------- PANEL ---------- */
+
+.cmt-root .cmt-panel {
+    position: relative !important;
+    z-index: 1000000 !important;
+
+    width: 100% !important;
+    max-width: 500px;
+    height: 72vh !important;
+
+    display: flex !important;
+    flex-direction: column;
+    overflow: hidden;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    color: #ffffff;
+    background: linear-gradient(180deg, #1f3a8a 0%, #172554 55%, #0f1b4d 100%) !important;
+
+    border-radius: 24px 24px 0 0;
+    animation: none;
+}
+
+
+/* ---------- HEADER ---------- */
+
+.cmt-root .cmt-header {
+    position: relative;
+    flex-shrink: 0;
+    height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cmt-root .cmt-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.cmt-root .cmt-close {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+    line-height: 1;
+    color: #ffffff;
+    cursor: pointer;
+
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.cmt-root .cmt-close:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.cmt-root .cmt-close:active {
+    transform: translateY(-50%) scale(0.92);
+}
+
+
+/* ---------- LIST (only this scrolls) ---------- */
+
+.cmt-root .cmt-list {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 4px 12px 12px;
+}
+
+.cmt-root .cmt-list::-webkit-scrollbar {
+    width: 0;
+}
+
+
+/* ---------- SINGLE COMMENT (no lines) ---------- */
+
+.cmt-root .cmt-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    padding: 10px 10px;
+    border-radius: 14px;
+
+    transition: background 0.2s;
+    animation: cmtIn 0.3s ease-out;
+}
+
+.cmt-root .cmt-item:hover {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.cmt-root .cmt-avatar {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.cmt-root .cmt-body {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding-top: 1px;
+}
+
+.cmt-root .cmt-name {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #ffffff;
+}
+
+.cmt-root .cmt-text {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.88);
+    word-break: break-word;
+}
+
+
+/* ---------- EMPTY STATE ---------- */
+
+.cmt-root .cmt-empty {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
+}
+
+.cmt-root .cmt-empty-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.cmt-root .cmt-empty-sub {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+
+/* ---------- COMPOSER (pinned bottom, full width) ---------- */
+
+.cmt-root .cmt-composer {
+    flex-shrink: 0;
+    width: 100%;
+    padding: 10px 14px 16px;
+}
+.cmt-login-message {
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: rgba(255, 90, 90, 0.12);
+    color: #ff8a8a;
+    font-size: 13px;
+    text-align: center;
+}
+
+.cmt-root .cmt-field {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 0 8px 0 18px;
+    height: 48px;
+
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 26px;
+
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.cmt-root .cmt-field:focus-within {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: #7db0ff;
+    box-shadow: 0 0 0 4px rgba(125, 176, 255, 0.18);
+}
+
+.cmt-root .cmt-input {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+
+    font-size: 14px;
+    color: #ffffff;
+    background: transparent;
+}
+
+.cmt-root .cmt-input::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.cmt-root .cmt-post {
+    flex-shrink: 0;
+    padding: 8px 12px;
+
+    font-size: 14px;
+    font-weight: 600;
+    color: #8fc0ff;
+    cursor: pointer;
+
+    border-radius: 18px;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+
+.cmt-root .cmt-post:hover:not(:disabled) {
+    background: rgba(143, 192, 255, 0.16);
+}
+
+.cmt-root .cmt-post:active:not(:disabled) {
+    transform: scale(0.94);
+}
+
+.cmt-root .cmt-post:disabled {
+    color: rgba(255, 255, 255, 0.3);
+    cursor: default;
+}
+
+
+/* ---------- ANIMATIONS ---------- */
+
+@keyframes cmtFade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes cmtSlide {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+}
+
+@keyframes cmtIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cmt-root.cmt-overlay,
+    .cmt-root .cmt-panel,
+    .cmt-root .cmt-item {
+        animation: none;
+    }
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 500px) {
+
+    .cmt-root .cmt-panel {
+        max-width: none;
+        height: 78vh;
+        border-radius: 20px 20px 0 0;
+    }
+
+    .cmt-root .cmt-composer {
+        padding: 10px 12px 14px;
+    }
+
+}

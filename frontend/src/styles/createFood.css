@@ -1,0 +1,526 @@
+/* Removes the browser's white margin on this page only */
+
+html:has(.cf-root),
+body:has(.cf-root) {
+    margin: 0;
+    padding: 0;
+    background: #0a1233;
+}
+
+
+/* =========================
+   CREATE FOOD PAGE
+   All classes start with "cf-" so nothing leaks to other pages.
+========================= */
+
+.cf-root,
+.cf-root * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.cf-root {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    padding: 24px 20px 48px;
+
+    color: #ffffff;
+
+    background: radial-gradient(
+        circle at 50% 0%,
+        #2a4aa8 0%,
+        #162a6b 38%,
+        #0a1233 100%
+    );
+}
+
+.cf-container {
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+
+/* ---------- BACK BUTTON ---------- */
+
+.cf-back {
+    margin-bottom: 20px;
+    padding: 9px 16px;
+
+    border: none;
+    border-radius: 22px;
+
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.cf-back:hover {
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.cf-back:active {
+    transform: scale(0.96);
+}
+
+
+/* ---------- LAYOUT ---------- */
+
+.cf-layout {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.cf-video-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+
+/* ---------- UPLOAD BOX ---------- */
+
+.cf-upload {
+    position: relative;
+
+    width: min(100%, 340px, calc(78dvh * 9 / 16));
+    aspect-ratio: 9 / 16;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    background: rgba(255, 255, 255, 0.07);
+    border: 2px dashed rgba(255, 255, 255, 0.25);
+
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.cf-upload:hover {
+    border-color: rgba(125, 176, 255, 0.7);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.cf-upload.dragging {
+    border-color: #7db0ff;
+    background: rgba(125, 176, 255, 0.18);
+    transform: scale(1.02);
+}
+
+.cf-upload.has-video {
+    border: none;
+    background: #0b1230;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+.cf-upload.has-video:hover {
+    background: #0b1230;
+}
+
+.cf-upload video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.cf-upload-content {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    text-align: center;
+    cursor: pointer;
+}
+
+.cf-upload-icon {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: #ffffff;
+
+    font-size: 26px;
+
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+
+    animation: cfFloat 2.4s ease-in-out infinite;
+}
+
+.cf-upload-content h2 {
+    margin-top: 6px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.cf-upload-content p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.cf-or {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.cf-choose {
+    padding: 10px 22px;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: background 0.2s ease;
+}
+
+.cf-upload-content:hover .cf-choose {
+    background: rgba(255, 255, 255, 0.26);
+}
+
+.cf-upload-content small {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.cf-remove {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(10, 18, 51, 0.7);
+    color: #ffffff;
+
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.cf-remove:hover {
+    background: rgba(220, 38, 38, 0.85);
+}
+
+.cf-remove:active {
+    transform: scale(0.92);
+}
+
+.cf-file {
+    width: min(100%, 340px);
+
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 10px 14px;
+
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+
+    font-size: 13px;
+}
+
+.cf-file-name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cf-file-size {
+    flex-shrink: 0;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+
+/* ---------- FORM CARD ---------- */
+
+.cf-form {
+    padding: 30px;
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    border-radius: 26px;
+
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3);
+}
+
+.cf-header {
+    margin-bottom: 26px;
+}
+
+.cf-header span {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #9cc4ff;
+}
+
+.cf-header h1 {
+    margin: 6px 0 8px;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.cf-header p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.cf-group {
+    margin-bottom: 20px;
+}
+
+.cf-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.cf-label-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.cf-label-row label {
+    margin-bottom: 0;
+}
+
+.cf-label-row span {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.cf-group input,
+.cf-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+
+    border: 1px solid transparent;
+    border-radius: 14px;
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cf-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.cf-group input::placeholder,
+.cf-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.cf-group input:focus,
+.cf-group textarea:focus {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: #7db0ff;
+    box-shadow: 0 0 0 4px rgba(125, 176, 255, 0.18);
+}
+
+
+/* ---------- SUMMARY ---------- */
+
+.cf-summary {
+    margin-bottom: 20px;
+    padding: 14px 16px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.cf-summary div {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.cf-summary span {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.cf-summary strong {
+    font-size: 14px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* ---------- ERROR ---------- */
+
+.cf-error {
+    margin-bottom: 16px;
+    padding: 12px 14px;
+
+    border-radius: 12px;
+
+    background: rgba(239, 68, 68, 0.18);
+    color: #ffb4b4;
+
+    font-size: 13px;
+}
+
+
+/* ---------- SUBMIT ---------- */
+
+.cf-submit {
+    width: 100%;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+
+    box-shadow: 0 8px 22px rgba(59, 130, 246, 0.4);
+
+    transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.cf-submit:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 26px rgba(59, 130, 246, 0.55);
+}
+
+.cf-submit:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+.cf-submit:disabled {
+    background: rgba(255, 255, 255, 0.14);
+    color: rgba(255, 255, 255, 0.4);
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+.cf-spinner {
+    width: 18px;
+    height: 18px;
+
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #ffffff;
+
+    animation: cfSpin 0.7s linear infinite;
+}
+
+
+/* ---------- ANIMATIONS ---------- */
+
+@keyframes cfFloat {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-5px); }
+}
+
+@keyframes cfSpin {
+    to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .cf-upload-icon,
+    .cf-spinner {
+        animation: none;
+    }
+
+}
+
+
+/* ---------- TABLET AND MOBILE ---------- */
+
+@media (max-width: 820px) {
+
+    .cf-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .cf-upload {
+        width: min(100%, 300px);
+    }
+
+    .cf-file {
+        width: min(100%, 300px);
+    }
+
+    .cf-form {
+        padding: 22px 18px;
+    }
+
+    .cf-header h1 {
+        font-size: 26px;
+    }
+
+}

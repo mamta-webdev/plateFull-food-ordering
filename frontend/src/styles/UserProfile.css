@@ -1,0 +1,420 @@
+/* Removes the browser's white margin on this page only */
+
+html:has(.up-page),
+body:has(.up-page) {
+    margin: 0;
+    padding: 0;
+    background: #0e2686;
+}
+
+
+/* =========================
+   USER PROFILE PAGE
+   Every class starts with "up-" so nothing leaks to other pages.
+========================= */
+
+.up-page,
+.up-page * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.up-page :where(button) {
+    border: none;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
+.up-page {
+    position: relative;
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    padding: 72px 16px 40px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: #ffffff;
+
+    background: radial-gradient(
+        circle at 50% 0%,
+        #e96e10 0%,
+        #ee7f11 38%,
+        #3d3b34 100%
+    );
+}
+
+
+/* ---------- BACK BUTTON ---------- */
+
+.up-back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 16px;
+
+    border-radius: 22px;
+
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    font-size: 14px;
+    font-weight: 500;
+
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.up-back:hover {
+    background: rgba(255, 255, 255, 0.24);
+}
+
+.up-back:active {
+    transform: scale(0.96);
+}
+
+
+/* ---------- CARD ---------- */
+
+.up-card {
+    width: 100%;
+    max-width: 440px;
+
+    padding: 32px 24px 24px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+
+    border-radius: 28px;
+
+    background: rgba(255, 255, 255, 0.09);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow: 0 8px 18px #ddd3d3c5;
+
+    animation: upRise 0.35s ease-out;
+}
+
+.up-card-small {
+    padding: 24px;
+    gap: 16px;
+}
+
+
+/* ---------- HEADER ---------- */
+
+.up-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.up-avatar {
+    width: 104px;
+    height: 104px;
+
+    margin-bottom: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: #ffffff;
+
+    font-size: 44px;
+    font-weight: 700;
+
+    box-shadow:
+        0 0 0 5px rgba(255, 255, 255, 0.1),
+        0 0 0 10px rgba(125, 176, 255, 0.2),
+        0 14px 30px rgba(0, 0, 0, 0.4);
+}
+
+.up-name {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.up-email {
+    margin-top: 6px;
+
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.65);
+
+    overflow-wrap: anywhere;
+}
+
+
+/* ---------- SECTIONS ---------- */
+
+.up-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.up-section h2 {
+    margin-bottom: 2px;
+
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #9cc4ff;
+}
+
+.up-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 14px 16px;
+
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.up-info-icon {
+    flex-shrink: 0;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: rgba(125, 176, 255, 0.2);
+    color: #9cc4ff;
+
+    font-size: 15px;
+}
+
+.up-info div {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.up-info small {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.up-info strong {
+    font-size: 15px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+
+/* ---------- ACTIONS ---------- */
+
+.up-action {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 14px 16px;
+
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.1);
+    text-align: left;
+
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.up-action:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.17);
+    transform: translateY(-2px);
+}
+
+.up-action:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+.up-action-icon {
+    flex-shrink: 0;
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: rgba(255, 209, 102, 0.2);
+    color: #ffd166;
+
+    font-size: 16px;
+}
+
+.up-action-text {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.up-action-text strong {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.up-action-text small {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.up-chevron {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    transition: transform 0.2s ease;
+}
+
+.up-action:hover .up-chevron {
+    transform: translateX(3px);
+}
+
+.up-logout {
+    background: rgba(255, 77, 109, 0.14);
+    color: #ffb4bf;
+}
+
+.up-logout:hover:not(:disabled) {
+    background: rgba(255, 77, 109, 0.26);
+}
+
+.up-logout .up-action-icon {
+    background: rgba(255, 77, 109, 0.2);
+    color: #ff7a93;
+}
+
+.up-logout:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+
+/* ---------- MESSAGES ---------- */
+
+.up-alert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px 14px;
+
+    border-radius: 12px;
+
+    background: rgba(255, 77, 109, 0.16);
+    color: #ffb4bf;
+
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.up-center {
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.up-spinner {
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.25);
+    border-top-color: #9cc4ff;
+
+    animation: upSpin 0.7s linear infinite;
+}
+
+
+/* ---------- ANIMATIONS ---------- */
+
+@keyframes upRise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes upSpin {
+    to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .up-card,
+    .up-spinner {
+        animation: none;
+    }
+
+}
+
+
+/* ---------- SMALL SCREENS ---------- */
+
+@media (max-width: 480px) {
+
+    .up-page {
+        padding: 68px 12px 32px;
+    }
+
+    .up-back {
+        top: 14px;
+        left: 14px;
+    }
+
+    .up-card {
+        padding: 28px 18px 20px;
+        border-radius: 24px;
+    }
+
+    .up-avatar {
+        width: 92px;
+        height: 92px;
+        font-size: 38px;
+    }
+
+    .up-name {
+        font-size: 23px;
+    }
+
+}

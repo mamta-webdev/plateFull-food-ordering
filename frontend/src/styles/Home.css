@@ -1,0 +1,515 @@
+/* =========================
+   HOME LAYOUT
+   One centred "stage" column (--stage-width). The video, the action
+   buttons, the caption and the bottom nav all share this width, so
+   everything lines up on desktop and fills the screen on mobile.
+========================= */
+
+html:has(.home),
+body:has(.home) {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* background: #0a1233; */
+    /* background:rgba(6, 12, 38, 0) */
+    /* background:#06222e; */
+     background: #120a33;
+}
+.home {
+    --stage-width: 440px;
+
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+    /* background: radial-gradient(
+        circle at 50% 0%,
+        #2a4aa8 0%,
+        #162a6b 38%,
+        #0a1233 100%
+    ); */
+
+    background: radial-gradient(
+        circle at 50% 0%,
+        #4c2a8a 0%,
+        #2a1666 38%,
+        #120a33 100%
+    );
+}
+.login-message {
+    position: fixed;
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%);
+
+    padding: 12px 20px;
+    border-radius: 12px;
+
+    background: rgba(236, 230, 230, 0.9);
+    color: rgb(184, 18, 18);
+
+    font-size: 14px;
+    font-weight: 500;
+
+    z-index: 9999;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================
+   VIDEO FEED
+========================= */
+
+.video-feed {
+    width: 100%;
+    max-width: var(--stage-width);
+    height: 100%;
+    margin: 0 auto;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.45);
+}
+
+.video-feed::-webkit-scrollbar {
+    display: none;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    flex-shrink: 0;
+    overflow: hidden;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    display: block;
+    margin: 0;
+    padding: 0;
+    background: #0b1230;
+}
+
+/* Dark blue fade at the bottom so text is easy to read */
+
+.video-container::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 55%;
+
+    background: linear-gradient(
+        to top,
+        rgba(6, 12, 38, 0.92) 0%,
+        rgba(6, 12, 38, 0.55) 40%,
+        rgba(6, 12, 38, 0) 100%
+    );
+
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* =========================
+   RIGHT SIDE ACTIONS
+========================= */
+
+.video-actions {
+    position: absolute;
+    right: 14px;
+    bottom: 120px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    z-index: 10;
+}
+
+.action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    padding: 0;
+    border: none;
+    background: transparent;
+
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Frosted-glass circle behind each icon */
+
+.action-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    color: #ffffff;
+    font-size: 21px;
+    line-height: 1;
+
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.action-btn:hover .action-icon {
+    transform: scale(1.08);
+    background: rgba(255, 255, 255, 0.26);
+}
+
+.action-btn:active .action-icon {
+    transform: scale(0.92);
+}
+
+/* Liked / saved state */
+
+.like-btn.active .action-icon {
+    color: #ff4d6d;
+    background: rgba(255, 77, 109, 0.22);
+}
+
+.save-btn.active .action-icon {
+    color: #ffd166;
+    background: rgba(255, 209, 102, 0.22);
+}
+
+.action-btn.active .action-icon svg {
+    animation: actionPop 0.35s ease-out;
+}
+
+@keyframes actionPop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.35); }
+    70%  { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+/* =========================
+   VIDEO DESCRIPTION
+========================= */
+
+.video-info {
+    position: absolute;
+    left: 16px;
+    bottom: 92px;
+
+    width: calc(100% - 96px);
+
+    z-index: 10;
+}
+
+.video-info p {
+    margin: 0 0 12px;
+
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.45;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+
+    overflow-wrap: anywhere;
+}
+.meal-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: #16a34a;
+    margin: 6px 0;
+}
+
+/* Visit Store button */
+
+.video-info button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 38px;
+    padding: 8px 20px;
+
+    border: none;
+    border-radius: 24px;
+
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.video-info button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
+}
+
+.video-info button:active {
+    transform: scale(0.96);
+}
+
+/* =========================
+   BOTTOM NAVIGATION
+   Same width as the video column, so it is perfectly aligned.
+========================= */
+
+.bottom-nav {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+
+    width: 100%;
+    max-width: var(--stage-width);
+
+    min-height: 64px;
+    padding: 0 12px env(safe-area-inset-bottom, 0px);
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    border: none;
+    box-shadow: none;
+
+    z-index: 100;
+}
+
+.bottom-nav-item {
+    height: 100%;
+    min-height: 56px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+
+    border: none;
+    background: transparent;
+
+    /* color: rgba(255, 255, 255, 0.6); */
+        color: rgba(255, 255, 255, 0.75);
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.bottom-nav-item:hover {
+    color: #ffffff;
+}
+
+/* Every icon sits in the same pill so Home and Saved line up */
+
+.bottom-nav-icon {
+    width: 48px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    border-radius: 14px;
+    font-size: 22px;
+
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.bottom-nav-item.active {
+    color: #ffffff;
+}
+
+
+.bottom-nav-item.active .bottom-nav-icon {
+    background: rgba(125, 176, 255, 0.25);
+    color: #9cc4ff;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .video-feed {
+        box-shadow: none;
+    }
+
+    .video-actions {
+        right: 12px;
+        bottom: 108px;
+        gap: 14px;
+    }
+
+    .action-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+    }
+
+    .action-btn {
+        font-size: 12px;
+    }
+
+    .video-info {
+        left: 14px;
+        width: calc(100% - 84px);
+    }
+
+    .video-info p {
+        font-size: 14px;
+    }
+
+    .video-info button {
+        min-height: 36px;
+        padding: 7px 16px;
+        font-size: 12px;
+    }
+
+}
+
+/* =========================
+   SMALL MOBILE SCREENS
+========================= */
+
+@media (max-width: 360px) {
+
+    .video-actions {
+        right: 8px;
+        bottom: 100px;
+        gap: 12px;
+    }
+
+    .action-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .video-info {
+        left: 10px;
+        width: calc(100% - 70px);
+    }
+
+}
+
+/* =========================
+   SHORT SCREENS
+========================= */
+
+@media (max-height: 560px) {
+
+    .video-actions {
+        bottom: 84px;
+        gap: 10px;
+    }
+
+    .action-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .video-info {
+        bottom: 78px;
+    }
+
+}
+
+/* =========================
+   SLIMMER BOTTOM NAV ON LARGE SCREENS
+========================= */
+
+@media (min-width: 601px) {
+
+    .bottom-nav {
+        min-height: 48px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    /* icon and label side by side instead of stacked */
+    .bottom-nav-item {
+        min-height: 48px;
+        flex-direction: row;
+        gap: 8px;
+        font-size: 13px;
+    }
+
+    .bottom-nav-icon {
+        width: 34px;
+        height: 28px;
+        font-size: 18px;
+    }
+
+    /* move the buttons and caption down to use the freed space */
+    .video-actions {
+        bottom: 80px;
+    }
+
+    .video-info {
+        bottom: 68px;
+    }
+}
+
+/* Column matches a 9:16 video on large screens, so the whole video shows */
+
+@media (min-width: 601px) {
+
+    .home {
+        --stage-width: min(440px, calc(100dvh * 9 / 16));
+    }
+
+}

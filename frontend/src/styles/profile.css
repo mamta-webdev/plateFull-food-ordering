@@ -1,0 +1,404 @@
+/* Kept from your original file so other pages do not change */
+
+* {
+    box-sizing: border-box;
+}
+
+/* Removes the browser's white margin on this page only */
+
+html:has(.fp-root),
+body:has(.fp-root) {
+    margin: 0;
+    padding: 0;
+    background: #0a1233;
+    
+}
+
+
+/* =========================
+   PROFILE PAGE
+   All classes start with "fp-" so nothing leaks to other pages.
+========================= */
+
+.fp-root,
+.fp-root * {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.fp-root {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    padding-bottom: 40px;
+
+    color: #ffffff;
+
+    background: radial-gradient(
+        circle at 50% 0%,
+        #2a4aa8 0%,
+        #162a6b 38%,
+        #0a1233 100%
+    );
+}
+
+.fp-wrap {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+
+/* ---------- BANNER ---------- */
+
+.fp-banner {
+    position: relative;
+    height: 160px;
+
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.22), transparent 55%),
+        linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+
+    border-radius: 0 0 32px 32px;
+}
+
+.fp-back {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.fp-back:hover {
+    background: rgba(255, 255, 255, 0.32);
+}
+
+.fp-back:active {
+    transform: scale(0.92);
+}
+
+
+/* ---------- PROFILE CARD ---------- */
+
+.fp-card {
+    position: relative;
+
+    margin: -52px 16px 0;
+    padding: 0 20px 22px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.09);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    border-radius: 26px;
+
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3);
+}
+
+.fp-avatar {
+    width: 92px;
+    height: 92px;
+
+    margin-top: -46px;
+    margin-bottom: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    font-size: 38px;
+
+    background: linear-gradient(135deg, #1b2f6e, #12204f);
+
+    box-shadow:
+        0 0 0 4px #ffffff22,
+        0 0 0 8px rgba(125, 176, 255, 0.35),
+        0 10px 24px rgba(0, 0, 0, 0.35);
+}
+.fp-img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+}
+
+.fp-name {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: 0.2px;
+}
+
+.fp-address {
+    margin-top: 6px;
+
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+
+/* ---------- STATS ---------- */
+
+.fp-stats {
+    width: 100%;
+
+    margin-top: 18px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.fp-stat {
+    padding: 14px 8px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.fp-stat:hover {
+    background: rgba(255, 255, 255, 0.14);
+    transform: translateY(-2px);
+}
+
+.fp-stat strong {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.fp-stat span {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+
+/* ---------- SECTION TITLE ---------- */
+
+.fp-section {
+    margin: 26px 20px 12px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fp-section h2 {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.fp-count {
+    min-width: 24px;
+    height: 24px;
+    padding: 0 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: rgba(125, 176, 255, 0.22);
+    color: #9cc4ff;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+.fp-viewer {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(5, 10, 30, 0.8);
+}
+
+.fp-viewer-card {
+    position: relative;
+    width: min(92vw, calc(88dvh * 9 / 16));
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    border-radius: 22px;
+    background: #0b1230;
+}
+
+.fp-viewer-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.fp-viewer-info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 60px 18px 62px;
+    background: linear-gradient(to top, rgba(6, 12, 38, 0.9), transparent);
+}
+
+.fp-viewer-info h3 {
+    margin-bottom: 6px;
+    font-size: 18px;
+}
+
+.fp-viewer-info p {
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+.fp-food-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 12px 0;
+}
+
+.fp-add-cart-btn {
+    width: 100%;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    background: #e85d35;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.fp-add-cart-btn:hover {
+    background: #c94725;
+}
+
+.fp-add-cart-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.fp-cart-message {
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+/* ---------- VIDEO GRID ---------- */
+
+.fp-grid {
+    padding: 0 16px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.fp-tile {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 9 / 16;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+    background: #0b1230;
+
+    cursor: pointer;
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.fp-tile video {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    display: block;
+
+    transition: transform 0.35s ease;
+}
+
+.fp-tile:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+}
+
+.fp-tile:hover video {
+    transform: scale(1.06);
+}
+
+.fp-empty {
+    margin: 10px 16px 0;
+    padding: 36px 16px;
+
+    text-align: center;
+
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 18px;
+}
+
+
+/* ---------- SMALL PHONES ---------- */
+
+@media (max-width: 380px) {
+
+    .fp-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .fp-tile,
+    .fp-tile video,
+    .fp-stat {
+        transition: none;
+    }
+
+}
+
+
