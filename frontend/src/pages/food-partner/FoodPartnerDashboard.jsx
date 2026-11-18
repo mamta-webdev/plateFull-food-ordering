@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../../styles/FoodPartnerDashboard.css";
+import "../../styles/foodPartnerDashboard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChartLine,
@@ -67,6 +67,9 @@ const MealCard = ({ meal, onEdit, onDelete }) => {
 
       <div className="fpd-meal-body">
         <h3>{meal.name}</h3>
+        {meal.price != null && (
+          <span className="fpd-meal-price">₹{meal.price}</span>
+        )}
         <p>{meal.description}</p>
 
         <div className="fpd-meal-stats">
@@ -235,6 +238,7 @@ const FoodPartnerDashboard = () => {
   };
 
   const handleDelete = async (meal) => {
+    if (!window.confirm(`Delete "${meal.name}"? This cannot be undone.`)) return;
     try {
       const response = await axios.delete(
         `http://localhost:3000/api/food/delete/${meal.id}`,
@@ -294,9 +298,9 @@ const FoodPartnerDashboard = () => {
 
   
   const totalMeals = meals.length;
-  const totalLikes = meals.reduce((sum, meal) => sum + meal.likeCount || 0, 0);
+  const totalLikes = meals.reduce((sum, meal) => sum + (meal.likeCount || 0), 0);
   const totalComments = meals.reduce(
-    (sum, meal) => sum + meal.commentCount || 0,
+    (sum, meal) => sum + (meal.commentCount || 0),
     0,
   );
   const totalSaves = meals.reduce(
@@ -358,7 +362,7 @@ const FoodPartnerDashboard = () => {
       <aside className="fpd-sidebar">
         <div className="fpd-brand">
           <span className="fpd-brand-mark">🍴</span>
-          <span className="fpd-brand-name">Zomata</span>
+          <span className="fpd-brand-name">PlateFull</span>
         </div>
 
         <nav className="fpd-nav">
@@ -404,7 +408,16 @@ const FoodPartnerDashboard = () => {
                   <FontAwesomeIcon icon={faEnvelope} /> {profile.email}
                 </span>
                 <span>
-                  <FontAwesomeIcon icon={faLocationDot} /> {profile.address}
+                  <FontAwesomeIcon icon={faLocationDot} />{" "}
+                  {profile.address || (
+                    <button
+                      type="button"
+                      className="fpd-link-btn"
+                      onClick={() => setEditing(true)}
+                    >
+                      Add your address
+                    </button>
+                  )}
                 </span>
               </div>
             </div>
@@ -455,6 +468,7 @@ const FoodPartnerDashboard = () => {
                   id: meal._id,
                   name: meal.name,
                   description: meal.description,
+                  price: meal.price,
                   video: meal.videoUrl,
                   likes: meal.likeCount || 0,
                   comments: meal.commentCount || 0,

@@ -1,7 +1,6 @@
-import "../styles/auth.css";
 import "../styles/theme.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function FoodPartnerRegister() {
   const navigate = useNavigate();
@@ -42,6 +41,11 @@ function FoodPartnerRegister() {
         <div className="auth-brand">
           <h1>PlateFull</h1>
           <p>Bring your food to more people.</p>
+        </div>
+
+        <div className="auth-role-toggle" role="navigation" aria-label="Account type">
+          <Link to="/user/register">Customer</Link>
+          <Link to="/food-partner/register" className="active" aria-current="page">Food Partner</Link>
         </div>
 
         <div className="auth-header">

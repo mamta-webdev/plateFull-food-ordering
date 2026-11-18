@@ -1,3 +1,5 @@
+@import "./theme.css";
+
 /* =========================================================
    COMMENTS PANEL
    Every class is prefixed with "cmt-" so no other stylesheet
@@ -18,7 +20,7 @@
     text-shadow: none;
     background: none;
     border-radius: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: var(--font-ui, "Inter", -apple-system, "Segoe UI", Roboto, sans-serif);
     color: inherit;
     -webkit-tap-highlight-color: transparent;
 }
@@ -47,7 +49,7 @@
     justify-content: center !important;
     align-items: flex-end !important;
 
-    background: rgba(5, 10, 30, 0.6) !important;
+    background: rgba(20,17,15, 0.6) !important;
 
     backdrop-filter: blur(3px);
 
@@ -73,7 +75,7 @@
     visibility: visible !important;
 
     color: #ffffff;
-    background: linear-gradient(180deg, #1f3a8a 0%, #172554 55%, #0f1b4d 100%) !important;
+    background: linear-gradient(180deg, #2e2520 0%, #2e2520 55%, #2e2520 100%) !important;
 
     border-radius: 24px 24px 0 0;
     animation: none;
@@ -264,8 +266,8 @@
 
 .cmt-root .cmt-field:focus-within {
     background: rgba(255, 255, 255, 0.16);
-    border-color: #7db0ff;
-    box-shadow: 0 0 0 4px rgba(125, 176, 255, 0.18);
+    border-color: #ff8a5c;
+    box-shadow: 0 0 0 4px rgba(255,138,92, 0.18);
 }
 
 .cmt-root .cmt-input {
@@ -289,7 +291,7 @@
 
     font-size: 14px;
     font-weight: 600;
-    color: #8fc0ff;
+    color: #ff8a5c;
     cursor: pointer;
 
     border-radius: 18px;
@@ -297,7 +299,7 @@
 }
 
 .cmt-root .cmt-post:hover:not(:disabled) {
-    background: rgba(143, 192, 255, 0.16);
+    background: rgba(255,138,92, 0.16);
 }
 
 .cmt-root .cmt-post:active:not(:disabled) {

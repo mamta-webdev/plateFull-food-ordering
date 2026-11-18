@@ -26,6 +26,11 @@ async function addToCart(req,res){
     const foodPartnerId = food.foodPartner
 
     let cart = await cartModel.findOne({user:userId})
+    console.log("=== CART DEBUG ===");
+console.log("Cart exists:", !!cart);
+console.log("Cart items count:", cart?.items?.length);
+console.log("Cart food partner:", cart?.foodPartner?.toString());
+console.log("Requested food partner:", foodPartnerId?.toString());
 
     //If the user doesn't have a cart, create one. If the user already has a cart, update it.
     if(!cart){
@@ -38,27 +43,38 @@ async function addToCart(req,res){
                 price: food.price
             }]
         })
-    }else{
-        if (cart.foodPartner.toString() !== foodPartnerId.toString()) {
-            return res.status(400).json({
-                message: "Your cart already contains food from another restaurant. Please clear your cart before adding food from this restaurant.",
-                code: "DIFFERENT_RESTAURANT"
-            })
-        }
-        const existingItem = cart.items.find(
-            items => items.food.toString() === foodId
-        )
-        if(existingItem){
-            existingItem.quantity += quantity
-        } else{
-            cart.items.push({
-                food: food._id,
-                quantity,
-                price: food.price
-            })
-        }
-        await cart.save()
+    } else {
+    // Apply restaurant restriction only when cart has items
+    if (
+        cart.items.length > 0 &&
+        cart.foodPartner?.toString() !== foodPartnerId.toString()
+    ) {
+        return res.status(400).json({
+            message: "Your cart already contains food from another restaurant. Please clear your cart before adding food from this restaurant.",
+            code: "DIFFERENT_RESTAURANT"
+        });
     }
+
+    // If the cart is empty, associate it with the new restaurant
+    if (cart.items.length === 0) {
+        cart.foodPartner = foodPartnerId;
+    }
+    const existingItem = cart.items.find(
+        item => item.food.toString() === foodId
+    );
+
+    if (existingItem) {
+        existingItem.quantity += quantity;
+    } else {
+        cart.items.push({
+            food: food._id,
+            quantity,
+            price: food.price
+        });
+    }
+
+    await cart.save();
+}
 
     return res.status(200).json({
         message: "Food added to cart successfully",

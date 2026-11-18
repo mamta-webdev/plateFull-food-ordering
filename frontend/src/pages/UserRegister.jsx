@@ -1,7 +1,7 @@
 import "../styles/auth.css";
 import "../styles/theme.css";
 import axios from 'axios'
-import {useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 function UserRegister() {
 
@@ -32,9 +32,14 @@ function UserRegister() {
           <p>Good food, good mood.</p>
         </div>
 
+        <div className="auth-role-toggle" role="navigation" aria-label="Account type">
+          <Link to="/user/register" className="active" aria-current="page">Customer</Link>
+          <Link to="/food-partner/register">Food Partner</Link>
+        </div>
+
         <div className="auth-header">
           <h2>Create your account</h2>
-          <p>Join Plateful and discover great food around you.</p>
+          <p>Join PlateFull and discover great food around you.</p>
         </div>
 
         <form className="auth-form" onSubmit={handleSubmit}>
@@ -78,7 +83,7 @@ function UserRegister() {
         </div>
 
         <div className="partner-link">
-          Want to join plateful as a food partner?{" "}
+          Want to join PlateFull as a food partner?{" "}
           <a href="/food-partner/register">
             Register as Food Partner
           </a>

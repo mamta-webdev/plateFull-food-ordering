@@ -1,8 +1,10 @@
 const userModel = require("../models/user.model")
+const { uploadFiles } = require("../services/storage.service");
 const foodPartnerModel = require("../models/foodPartner.model")
 const bcryptjs =  require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const storageService = require("../services/storage.service")
+
 
 async function registerUser(req,res){
     const {name, email, password } = req.body
@@ -81,6 +83,98 @@ async function getMyProfile(req,res){
         user
     })
 }
+
+async function updateMyProfile(req, res) {
+    try {
+        const { name, phone, address, profilePhoto } = req.body;
+
+        if (typeof name !== "string" || !name.trim()) {
+            return res.status(400).json({
+                message: "Name is required"
+            });
+        }
+
+        const user = await userModel.findByIdAndUpdate(
+            req.user._id,
+            {
+                name: name.trim(),
+                phone: typeof phone === "string" ? phone.trim() : "",
+                address: typeof address === "string" ? address.trim() : "",
+                profilePhoto:
+                    typeof profilePhoto === "string" ? profilePhoto.trim() : ""
+            },
+            {
+                new: true,
+                runValidators: true
+            }
+        ).select("-password");
+
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+
+        return res.status(200).json({
+            message: "Profile updated successfully",
+            user
+        });
+    } catch (error) {
+        console.error("Update profile error:", error);
+
+        return res.status(500).json({
+            message: "Unable to update profile"
+        });
+    }
+}
+
+async function uploadProfilePhoto(req, res) {
+    try {
+        if (!req.file) {
+            return res.status(400).json({
+                message: "Please select a profile photo"
+            });
+        }
+
+        // Upload photo to ImageKit
+        const result = await uploadFiles(
+            req.file.buffer.toString("base64"),
+            `profile-${req.user._id}-${Date.now()}`
+        );
+
+        // Save the photo URL in the user's MongoDB document
+        const user = await userModel.findByIdAndUpdate(
+            req.user._id,
+            {
+                profilePhoto: result.url
+            },
+            {
+                new: true,
+                runValidators: true
+            }
+        ).select("-password");
+
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+
+        return res.status(200).json({
+            message: "Profile photo uploaded successfully",
+            profilePhoto: user.profilePhoto,
+            user
+        });
+
+    } catch (error) {
+        console.error("Profile photo upload error:", error);
+
+        return res.status(500).json({
+            message: "Unable to upload profile photo"
+        });
+    }
+}
+
 function logoutUser(req,res){
     res.clearCookie("userToken")
     res.status(200).json({
@@ -170,4 +264,4 @@ function logoutfoodPartner(req,res){
         })
 }
 
-module.exports = { registerUser, loginUser, logoutUser, registerfoodPartner, loginfoodPartner, logoutfoodPartner, getMyProfile}
+module.exports = { registerUser, loginUser, logoutUser, registerfoodPartner, loginfoodPartner, logoutfoodPartner, getMyProfile, updateMyProfile, uploadProfilePhoto}

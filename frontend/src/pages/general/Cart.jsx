@@ -8,16 +8,24 @@ import {
     faUtensils,
     faTriangleExclamation,
     faPlus,
-    faMinus
+    faMinus,
+    faTrash
 } from "@fortawesome/free-solid-svg-icons"
 import "../../styles/Cart.css"
 
-// Formats a number as Indian rupees, e.g. 159.64 -> ₹159.64
-const formatPrice = (amount) =>
-    new Intl.NumberFormat("en-IN", {
+// Formats a number as Indian rupees for display only.
+// Whole amounts show without decimals (₹80), others keep two (₹79.82).
+const formatPrice = (amount) => {
+    const value = Math.round((Number(amount) || 0) * 100) / 100
+    const digits = Number.isInteger(value) ? 0 : 2
+
+    return new Intl.NumberFormat("en-IN", {
         style: "currency",
-        currency: "INR"
-    }).format(amount)
+        currency: "INR",
+        minimumFractionDigits: digits,
+        maximumFractionDigits: digits
+    }).format(value)
+}
 
 const Cart = () => {
 
@@ -27,6 +35,8 @@ const Cart = () => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")
     const [reloadKey, setReloadKey] = useState(0)
+    // Which cart item is waiting for "Remove this item?" confirmation
+    const [confirmRemoveId, setConfirmRemoveId] = useState(null)
 
     // Fetch the cart (runs on page load and again when "Try again" is clicked)
     useEffect(() => {
@@ -199,8 +209,19 @@ const handleRemoveItem = async (cartItemId) => {
 
     if (items.length === 0) {
         return (
-            <div className="cart-page">
-                <div className="cart-state">
+            <div className="cart-page cart-page-empty">
+                <button
+                 type="button"
+                className="cart-empty-home"
+                onClick={() => navigate("/")}
+                aria-label="Back to home"
+                >
+                    <FontAwesomeIcon icon={faChevronLeft} />
+                <span>Home</span>
+
+                </button>
+
+                <div className="cart-state cart-empty-state">
                     <div className="cart-state-icon">
                         <FontAwesomeIcon icon={faCartShopping} />
                     </div>
@@ -208,10 +229,11 @@ const handleRemoveItem = async (cartItemId) => {
                     <p>Looks like you haven't added any food yet.</p>
                     <button
                         type="button"
-                        className="cart-btn cart-btn-primary"
+                        className="cart-btn cart-btn-primary cart-empty-explore"
                         onClick={() => navigate("/")}
                     >
                         Explore Food
+                        <span aria-hidden="true">→</span>
                     </button>
                 </div>
             </div>
@@ -228,25 +250,6 @@ const handleRemoveItem = async (cartItemId) => {
             {/* HERO */}
 
             <header className="cart-hero">
-                {/* Background food video */}
-    <video
-        className="cart-hero-video"
-        autoPlay
-        loop
-        playsInline
-        muted
-        preload="metadata"
-        aria-hidden="true"
-    >
-        <source
-            src="/videos/food-background.mp4"
-            type="video/mp4"
-        />
-    </video>
-
-    {/* Dark overlay for readable text */}
-    <div className="cart-hero-overlay"></div>
-
                 <div className="cart-hero-inner">
 
                     <button
@@ -305,6 +308,54 @@ const handleRemoveItem = async (cartItemId) => {
                                             {formatPrice(price * quantity)}
                                         </strong>
 
+                                        {confirmRemoveId === item._id ? (
+                                            <div className="cart-confirm" role="group" aria-label="Confirm remove item">
+                                                <span>Remove this item?</span>
+
+                                                <button
+                                                    type="button"
+                                                    className="cart-confirm-no"
+                                                    onClick={() => setConfirmRemoveId(null)}
+                                                >
+                                                    Keep
+                                                </button>
+
+                                                <button
+                                                    type="button"
+                                                    className="cart-confirm-yes"
+                                                    onClick={() => {
+                                                        setConfirmRemoveId(null)
+                                                        handleRemoveItem(item._id)
+                                                    }}
+                                                >
+                                                    Remove
+                                                </button>
+                                            </div>
+                                        ) : (
+                                            <div className="cart-card-controls">
+                                                <span className="cart-stepper">
+                                                    <button type="button" onClick={() => handleQuantityChange(item._id, -1)} disabled={quantity <= 1} aria-label="Decrease quantity">
+                                                        <FontAwesomeIcon icon={faMinus} />
+                                                    </button>
+
+                                                    <b>{quantity}</b>
+
+                                                    <button type="button" onClick={() => handleQuantityChange(item._id, 1)} aria-label="Increase quantity">
+                                                        <FontAwesomeIcon icon={faPlus} />
+                                                    </button>
+                                                </span>
+
+                                                <button
+                                                    type="button"
+                                                    className="cart-remove-btn"
+                                                    onClick={() => setConfirmRemoveId(item._id)}
+                                                    aria-label="Remove item"
+                                                    title="Remove item"
+                                                >
+                                                    <FontAwesomeIcon icon={faTrash} />
+                                                </button>
+                                            </div>
+                                        )}
                                     </div>
 
                                     <div className="cart-photo">
@@ -333,50 +384,7 @@ const handleRemoveItem = async (cartItemId) => {
 
                 <aside className="cart-order">
 
-                    <h2>Your order</h2>
-
-                    <ul className="cart-lines">
-                        {items.map((item) => {
-
-                            const price = Number(item.price) || 0
-                            const quantity = Number(item.quantity) || 0
-
-                            return (
-                                <li key={item._id}>
-
-                                    <span className="cart-line-name">
-                                        {item.food?.name || "Item no longer available"}
-                                    </span>
-
-                                    {/* Display only: quantity editing is not built yet */}
-                                    <span className="cart-stepper">
-                                        <button type="button" onClick={() => handleQuantityChange(item._id, -1)} disabled={quantity <= 1} aria-label="Decrease quantity">
-                                            <FontAwesomeIcon icon={faMinus} />
-                                        </button>
-
-                                        <b>{quantity}</b>
-
-                                        <button type="button" onClick={() => handleQuantityChange(item._id, 1)}  aria-label="Increase quantity">
-                                            <FontAwesomeIcon icon={faPlus} />
-                                        </button>
-                                    </span>
-
-                                    <span className="cart-line-price">
-                                        {formatPrice(price * quantity)}
-                                    </span>
-
-                                    <button
-    type="button"
-    className="cart-remove-btn"
-    onClick={() => handleRemoveItem(item._id)}
->
-    Remove
-                                    </button>
-
-                                </li>
-                            )
-                        })}
-                    </ul>
+                    <h2>Order summary</h2>
 
                     <div className="cart-totals">
 
@@ -402,8 +410,8 @@ const handleRemoveItem = async (cartItemId) => {
                     </div>
 
                     {/* Placeholder: checkout is not built yet */}
-                    <button type="button" className="cart-checkout" disabled>
-                        Continue to checkout (coming soon)
+                    <button type="button" className="cart-checkout" onClick={()=> navigate("/checkout")}>
+                        Checkout
                     </button>
 
                     <button
@@ -416,6 +424,24 @@ const handleRemoveItem = async (cartItemId) => {
 
                 </aside>
 
+            </div>
+
+
+            {/* Mobile bar: total + checkout (checkout is not built yet) */}
+            <div className="cart-mobile-bar">
+                <div className="cart-bar-total">
+                    <small>Total</small>
+                    <strong>{formatPrice(subtotal)}</strong>
+                </div>
+
+                <div className="cart-bar-action">
+                    <button type="button"
+                    className="cart-bar-checkout"
+                    onClick={()=> navigate("/checkout")}
+                    >
+                        Checkout
+                    </button>
+                </div>
             </div>
 
         </div>

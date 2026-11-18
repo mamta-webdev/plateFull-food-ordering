@@ -1,3 +1,6 @@
+
+@import "./theme.css";
+
 /* =========================
    HOME LAYOUT
    One centred "stage" column (--stage-width). The video, the action
@@ -10,10 +13,10 @@ body:has(.home) {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    /* background: #0a1233; */
-    /* background:rgba(6, 12, 38, 0) */
+    /* background: #14110f; */
+    /* background:rgba(20,17,15, 0) */
     /* background:#06222e; */
-     background: #120a33;
+     background: #14110f;
 }
 .home {
     --stage-width: 440px;
@@ -28,16 +31,16 @@ body:has(.home) {
 
     /* background: radial-gradient(
         circle at 50% 0%,
-        #2a4aa8 0%,
-        #162a6b 38%,
-        #0a1233 100%
+        #2e2520 0%,
+        #2e2520 38%,
+        #14110f 100%
     ); */
 
     background: radial-gradient(
         circle at 50% 0%,
-        #4c2a8a 0%,
-        #2a1666 38%,
-        #120a33 100%
+        #3a2218 0%,
+        #2e2520 38%,
+        #14110f 100%
     );
 }
 .login-message {
@@ -107,7 +110,7 @@ body:has(.home) {
     display: block;
     margin: 0;
     padding: 0;
-    background: #0b1230;
+    background: #14110f;
 }
 
 /* Dark blue fade at the bottom so text is easy to read */
@@ -122,9 +125,9 @@ body:has(.home) {
 
     background: linear-gradient(
         to top,
-        rgba(6, 12, 38, 0.92) 0%,
-        rgba(6, 12, 38, 0.55) 40%,
-        rgba(6, 12, 38, 0) 100%
+        rgba(20,17,15, 0.92) 0%,
+        rgba(20,17,15, 0.55) 40%,
+        rgba(20,17,15, 0) 100%
     );
 
     pointer-events: none;
@@ -207,13 +210,13 @@ body:has(.home) {
 /* Liked / saved state */
 
 .like-btn.active .action-icon {
-    color: #ff4d6d;
-    background: rgba(255, 77, 109, 0.22);
+    color: #ff6b4a;
+    background: rgba(255,107,74, 0.22);
 }
 
 .save-btn.active .action-icon {
-    color: #ffd166;
-    background: rgba(255, 209, 102, 0.22);
+    color: #f2a93b;
+    background: rgba(242,169,59, 0.22);
 }
 
 .action-btn.active .action-icon svg {
@@ -252,11 +255,18 @@ body:has(.home) {
 
     overflow-wrap: anywhere;
 }
-.meal-price {
-    font-size: 16px;
+.video-info p:first-child {
+    font-family: var(--font-display, "Fraunces", Georgia, serif);
+    font-size: 24px;
     font-weight: 700;
-    color: #16a34a;
-    margin: 6px 0;
+    line-height: 1.2;
+}
+
+.video-info .meal-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 6px 0 14px;
 }
 
 /* Visit Store button */
@@ -272,20 +282,20 @@ body:has(.home) {
     border: none;
     border-radius: 24px;
 
-    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    background: linear-gradient(135deg, #c2441f, #a83a19);
     color: #ffffff;
 
     font-size: 13px;
     font-weight: 600;
 
     cursor: pointer;
-    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
+    box-shadow: 0 6px 16px rgba(194,68,31, 0.35);
     transition: transform 0.15s ease, box-shadow 0.2s ease;
 }
 
 .video-info button:hover {
     transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
+    box-shadow: 0 8px 20px rgba(194,68,31, 0.5);
 }
 
 .video-info button:active {
@@ -373,8 +383,8 @@ body:has(.home) {
 
 
 .bottom-nav-item.active .bottom-nav-icon {
-    background: rgba(125, 176, 255, 0.25);
-    color: #9cc4ff;
+    background: rgba(255,138,92, 0.25);
+    color: #ff8a5c;
 }
 
 /* =========================

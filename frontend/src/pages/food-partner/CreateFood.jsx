@@ -1,4 +1,3 @@
-import React, { useState } from "react"
 import "../../styles/createFood.css"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
@@ -47,7 +46,7 @@ const CreateFood = () => {
             )
 
             console.log("Food created:", response.data)
-            navigate("/")
+            navigate("/food-partner/dashboard")
 
         } catch (error) {
 

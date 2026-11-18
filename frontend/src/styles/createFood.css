@@ -1,10 +1,12 @@
+@import "./theme.css";
+
 /* Removes the browser's white margin on this page only */
 
 html:has(.cf-root),
 body:has(.cf-root) {
     margin: 0;
     padding: 0;
-    background: #0a1233;
+    background: #14110f;
 }
 
 
@@ -18,7 +20,7 @@ body:has(.cf-root) {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: var(--font-ui, "Inter", -apple-system, "Segoe UI", Roboto, sans-serif);
 }
 
 .cf-root {
@@ -32,9 +34,9 @@ body:has(.cf-root) {
 
     background: radial-gradient(
         circle at 50% 0%,
-        #2a4aa8 0%,
-        #162a6b 38%,
-        #0a1233 100%
+        #2e2520 0%,
+        #2e2520 38%,
+        #14110f 100%
     );
 }
 
@@ -109,24 +111,24 @@ body:has(.cf-root) {
 }
 
 .cf-upload:hover {
-    border-color: rgba(125, 176, 255, 0.7);
+    border-color: rgba(255,138,92, 0.7);
     background: rgba(255, 255, 255, 0.1);
 }
 
 .cf-upload.dragging {
-    border-color: #7db0ff;
-    background: rgba(125, 176, 255, 0.18);
+    border-color: #ff8a5c;
+    background: rgba(255,138,92, 0.18);
     transform: scale(1.02);
 }
 
 .cf-upload.has-video {
     border: none;
-    background: #0b1230;
+    background: #14110f;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
 }
 
 .cf-upload.has-video:hover {
-    background: #0b1230;
+    background: #14110f;
 }
 
 .cf-upload video {
@@ -161,12 +163,12 @@ body:has(.cf-root) {
 
     border-radius: 50%;
 
-    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    background: linear-gradient(135deg, #c2441f, #a83a19);
     color: #ffffff;
 
     font-size: 26px;
 
-    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+    box-shadow: 0 8px 20px rgba(194,68,31, 0.4);
 
     animation: cfFloat 2.4s ease-in-out infinite;
 }
@@ -226,7 +228,7 @@ body:has(.cf-root) {
     border: none;
     border-radius: 50%;
 
-    background: rgba(10, 18, 51, 0.7);
+    background: rgba(20, 17, 15, 0.7);
     color: #ffffff;
 
     font-size: 22px;
@@ -277,9 +279,8 @@ body:has(.cf-root) {
 .cf-form {
     padding: 30px;
 
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: #1f1a17;
+    border: 1px solid #3a302a;
 
     border-radius: 26px;
 
@@ -295,7 +296,7 @@ body:has(.cf-root) {
     font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: #9cc4ff;
+    color: #ff8a5c;
 }
 
 .cf-header h1 {
@@ -342,12 +343,12 @@ body:has(.cf-root) {
     width: 100%;
     padding: 14px 16px;
 
-    border: 1px solid transparent;
+    border: 1px solid #4a3e36;
     border-radius: 14px;
     outline: none;
 
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
+    background: #14110f;
+    color: #f6ebe2;
 
     font-size: 14px;
     line-height: 1.5;
@@ -362,14 +363,14 @@ body:has(.cf-root) {
 
 .cf-group input::placeholder,
 .cf-group textarea::placeholder {
-    color: rgba(255, 255, 255, 0.45);
+    color: #a09287;
 }
 
 .cf-group input:focus,
 .cf-group textarea:focus {
-    background: rgba(255, 255, 255, 0.14);
-    border-color: #7db0ff;
-    box-shadow: 0 0 0 4px rgba(125, 176, 255, 0.18);
+    background: #14110f;
+    border-color: #ff8a5c;
+    box-shadow: 0 0 0 4px rgba(255,138,92, 0.18);
 }
 
 
@@ -437,21 +438,25 @@ body:has(.cf-root) {
     border: none;
     border-radius: 14px;
 
-    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    background: #c2441f;
     color: #ffffff;
 
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
 
-    box-shadow: 0 8px 22px rgba(59, 130, 246, 0.4);
+    /* keeps the main action visible while scrolling the form */
+    position: sticky;
+    bottom: 16px;
+
+    box-shadow: 0 8px 22px rgba(194,68,31, 0.4);
 
     transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 }
 
 .cf-submit:hover:not(:disabled) {
     transform: translateY(-1px);
-    box-shadow: 0 12px 26px rgba(59, 130, 246, 0.55);
+    box-shadow: 0 12px 26px rgba(194,68,31, 0.55);
 }
 
 .cf-submit:active:not(:disabled) {
@@ -459,8 +464,8 @@ body:has(.cf-root) {
 }
 
 .cf-submit:disabled {
-    background: rgba(255, 255, 255, 0.14);
-    color: rgba(255, 255, 255, 0.4);
+    background: #3a302a;
+    color: #b8a99e;
     box-shadow: none;
     cursor: not-allowed;
 }
@@ -523,4 +528,16 @@ body:has(.cf-root) {
         font-size: 26px;
     }
 
+}
+
+
+.cf-header h1 {
+    font-family: var(--font-display, "Fraunces", Georgia, serif);
+}
+
+/* On phones the form is a long single column, so a sticky button would cover the fields */
+@media (max-width: 768px) {
+    .cf-submit {
+        position: static;
+    }
 }

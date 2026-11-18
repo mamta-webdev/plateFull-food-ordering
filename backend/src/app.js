@@ -5,8 +5,14 @@ const foodRoutes = require("./routes/food.routes")
 const cors = require("cors")
 const foodPartnerRoutes = require("./routes/foodPartner.routes")
 const cartRoutes = require("./routes/cart.routes")
+const orderRoutes = require("./routes/order.routes");
+const path = require("path");
 
 const app = express()
+app.use(
+  "/foodVideos",
+  express.static(path.join(__dirname, "foodVideos"))
+);
 
 app.use(express.json())
 app.use(cookieParser())
@@ -23,5 +29,6 @@ app.use("/api/auth", authRoutes)
 app.use("/api/food", foodRoutes)
 app.use("/api/food-partner", foodPartnerRoutes)
 app.use("/api/cart", cartRoutes)
+app.use("/api/orders", orderRoutes)
 
 module.exports = app

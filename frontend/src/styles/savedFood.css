@@ -1,3 +1,5 @@
+@import "./theme.css";
+
 /* =========================
    SAVED PAGE
    Same centred column and blue theme as the Home feed.
@@ -8,7 +10,7 @@ body:has(.saved-page) {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background: #120a33;
+    background: #14110f;
 }
 .saved-page {
     --stage-width: 440px;
@@ -20,9 +22,9 @@ body:has(.saved-page) {
 
     background: radial-gradient(
         circle at 50% 0%,
-        #4c2a8a 0%,
-        #2a1666 38%,
-        #120a33 100%
+        #3a2218 0%,
+        #2e2520 38%,
+        #14110f 100%
     );
     color: #ffffff;
 }
@@ -60,7 +62,7 @@ body:has(.saved-page) {
     scroll-snap-align: start;
     scroll-snap-stop: always;
     overflow: hidden;
-    background: #0b1230;
+    background: #14110f;
 }
 
 /* VIDEO */
@@ -74,7 +76,7 @@ body:has(.saved-page) {
 
     object-fit: cover;
 
-    background: #0b1230;
+    background: #14110f;
 }
 
 
@@ -162,8 +164,8 @@ body:has(.saved-page) {
 
     border-radius: 50%;
 
-    background: rgba(255, 209, 102, 0.22);
-    color: #ffd166;
+    background: rgba(242,169,59, 0.22);
+    color: #f2a93b;
 
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -225,7 +227,7 @@ body:has(.saved-page) {
 
 .no-saved-food svg {
     font-size: 45px;
-    color: #9cc4ff;
+    color: #ff8a5c;
 }
 
 .no-saved-food p {

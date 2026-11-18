@@ -1,7 +1,9 @@
 import "../styles/auth.css";
 import "../styles/theme.css";
 import axios from "axios"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
+import toast from "react-hot-toast";
+
 function FoodPartnerLogin() {
   const navigate = useNavigate()
 
@@ -18,18 +20,26 @@ function FoodPartnerLogin() {
     }).then(response=>{
       console.log(response.data)
       navigate("/food-partner/dashboard")
-    }).catch(error=>{
-      console.log("Status:", error.response?.status)
-      console.log("Backend message:", error.response?.data)
-    })
+    }).catch(error => {
+    const message =
+        error.response?.data?.message ||
+        "Invalid email or password. Please try again."
+
+    toast.error(message)
+})
   }
   return (
     <div className="auth-page">
       <div className="auth-card">
 
         <div className="auth-brand">
-          <h1>Plateful</h1>
+          <h1>PlateFull</h1>
           <p>Grow your food business with us.</p>
+        </div>
+
+        <div className="auth-role-toggle" role="navigation" aria-label="Account type">
+          <Link to="/user/login">Customer</Link>
+          <Link to="/food-partner/login" className="active" aria-current="page">Food Partner</Link>
         </div>
 
         <div className="auth-header">

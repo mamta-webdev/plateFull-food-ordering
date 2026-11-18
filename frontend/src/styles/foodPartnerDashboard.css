@@ -1,10 +1,12 @@
+@import "./theme.css";
+
 /* Removes the browser's white margin on this page only */
 
 html:has(.fpd-root),
 body:has(.fpd-root) {
     margin: 0;
     padding: 0;
-    background: #0a1233;
+    background: #14110f;
 }
 
 
@@ -18,7 +20,7 @@ body:has(.fpd-root) {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: var(--font-ui, "Inter", -apple-system, "Segoe UI", Roboto, sans-serif);
 }
 
 .fpd-root :where(button) {
@@ -37,9 +39,9 @@ body:has(.fpd-root) {
 
     background: radial-gradient(
         circle at 50% 0%,
-        #2a4aa8 0%,
-        #162a6b 38%,
-        #0a1233 100%
+        #2e2520 0%,
+        #2e2520 38%,
+        #14110f 100%
     );
     background-attachment: fixed;
 }
@@ -63,7 +65,7 @@ body:has(.fpd-root) {
     flex-direction: column;
     gap: 28px;
 
-    background: rgba(8, 14, 40, 0.72);
+    background: rgba(20,17,15, 0.72);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
 
@@ -88,7 +90,7 @@ body:has(.fpd-root) {
     border-radius: 12px;
     font-size: 20px;
 
-    background: linear-gradient(135deg, #ffb347, #ff7a45);
+    background: linear-gradient(135deg, #c2441f, #f2a93b);
 }
 
 .fpd-brand-name {
@@ -136,22 +138,22 @@ body:has(.fpd-root) {
 }
 
 .fpd-nav-item.active {
-    background: rgba(125, 176, 255, 0.22);
+    background: rgba(255,138,92, 0.22);
     color: #ffffff;
 }
 
 .fpd-nav-item.active svg {
-    color: #9cc4ff;
+    color: #ff8a5c;
 }
 
 .fpd-nav-logout {
     margin-top: auto;
-    color: #ff9aa9;
+    color: #ffb199;
 }
 
 .fpd-nav-logout:hover {
-    background: rgba(255, 77, 109, 0.16);
-    color: #ffb4bf;
+    background: rgba(255,107,74, 0.16);
+    color: #ffb199;
 }
 
 
@@ -191,13 +193,13 @@ body:has(.fpd-root) {
 }
 
 .fpd-btn-primary {
-    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    background: linear-gradient(135deg, #c2441f, #a83a19);
     color: #ffffff;
-    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.35);
+    box-shadow: 0 8px 20px rgba(194,68,31, 0.35);
 }
 
 .fpd-btn-primary:hover {
-    box-shadow: 0 10px 26px rgba(59, 130, 246, 0.55);
+    box-shadow: 0 10px 26px rgba(194,68,31, 0.55);
 }
 
 .fpd-btn-soft {
@@ -210,28 +212,28 @@ body:has(.fpd-root) {
 }
 
 .fpd-btn-danger {
-    background: rgba(255, 77, 109, 0.16);
-    color: #ff9aa9;
+    background: rgba(255,107,74, 0.16);
+    color: #ffb199;
 }
 
 .fpd-btn-danger:hover {
-    background: rgba(255, 77, 109, 0.28);
+    background: rgba(255,107,74, 0.28);
 }
 
 .fpd-btn-add {
     padding: 12px 24px;
 
-    background: linear-gradient(135deg, #ffb347, #ff7a45);
-    color: #2a1400;
+    background: #c2441f;
+    color: #ffffff;
     font-size: 15px;
     font-weight: 700;
 
-    box-shadow: 0 8px 22px rgba(255, 140, 60, 0.4);
+    box-shadow: 0 8px 22px rgba(194, 68, 31, 0.4);
 }
 
 .fpd-btn-add:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(255, 140, 60, 0.55);
+    box-shadow: 0 12px 28px rgba(194, 68, 31, 0.55);
 }
 
 .fpd-icon-btn {
@@ -271,12 +273,12 @@ body:has(.fpd-root) {
 }
 
 .fpd-cover {
-    height: 150px;
+    height: 96px;
 
     background:
         radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.25), transparent 50%),
-        radial-gradient(circle at 85% 80%, rgba(255, 179, 71, 0.5), transparent 55%),
-        linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+        radial-gradient(circle at 85% 80%, rgba(242, 169, 59, 0.35), transparent 55%),
+        linear-gradient(135deg, #c2441f 0%, #a83a19 100%);
 }
 
 .fpd-profile-body {
@@ -301,15 +303,15 @@ body:has(.fpd-root) {
     border-radius: 50%;
     overflow:hidden;
 
-    background: linear-gradient(135deg, #ffb347, #ff7a45);
-    color: #2a1400;
+    background: #c2441f;
+    color: #ffffff;
 
     font-size: 46px;
     font-weight: 700;
 
     box-shadow:
-        0 0 0 5px #162a6b,
-        0 0 0 9px rgba(125, 176, 255, 0.35),
+        0 0 0 5px #2e2520,
+        0 0 0 9px rgba(255,138,92, 0.35),
         0 12px 28px rgba(0, 0, 0, 0.4);
 }
 .fpd-dashboard-avatar img {
@@ -342,7 +344,7 @@ body:has(.fpd-root) {
     margin-top: 6px;
     font-size: 14px;
     font-weight: 500;
-    color: #9cc4ff;
+    color: #ff8a5c;
 }
 
 .fpd-meta {
@@ -413,10 +415,10 @@ body:has(.fpd-root) {
     font-size: 18px;
 }
 
-.fpd-stat-icon.blue   { background: rgba(91, 156, 255, 0.2);  color: #9cc4ff; }
-.fpd-stat-icon.pink   { background: rgba(255, 77, 109, 0.2);  color: #ff7a93; }
-.fpd-stat-icon.indigo { background: rgba(129, 140, 248, 0.22); color: #b4baff; }
-.fpd-stat-icon.amber  { background: rgba(255, 209, 102, 0.2); color: #ffd166; }
+.fpd-stat-icon.blue   { background: rgba(255,138,92, 0.2);  color: #ff8a5c; }
+.fpd-stat-icon.pink   { background: rgba(255,107,74, 0.2);  color: #ff9c80; }
+.fpd-stat-icon.indigo { background: rgba(255,138,92, 0.2); color: #ff8a5c; }
+.fpd-stat-icon.amber  { background: rgba(242,169,59, 0.2); color: #f2a93b; }
 
 .fpd-stat strong {
     font-size: 30px;
@@ -433,7 +435,7 @@ body:has(.fpd-root) {
     margin-top: 6px;
     font-size: 12px;
     font-weight: 600;
-    color: #5eead4;
+    color: #d9c3b3;
 }
 
 
@@ -470,8 +472,8 @@ body:has(.fpd-root) {
 
     border-radius: 13px;
 
-    background: rgba(125, 176, 255, 0.22);
-    color: #9cc4ff;
+    background: rgba(255,138,92, 0.22);
+    color: #ff8a5c;
 
     font-size: 13px;
     font-weight: 600;
@@ -479,7 +481,7 @@ body:has(.fpd-root) {
 
 .fpd-meals-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
 }
 
@@ -508,7 +510,7 @@ body:has(.fpd-root) {
 .fpd-meal-media {
     position: relative;
     aspect-ratio: 4 / 5;
-    background: #0b1230;
+    background: #14110f;
 }
 
 .fpd-meal-media video {
@@ -527,7 +529,7 @@ body:has(.fpd-root) {
 
     border-radius: 14px;
 
-    background: rgba(10, 18, 51, 0.65);
+    background: rgba(20, 17, 15, 0.65);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 
@@ -574,9 +576,9 @@ body:has(.fpd-root) {
     font-size: 12px;
 }
 
-.fpd-meal-stats span:nth-child(1) svg { color: #ff7a93; }
-.fpd-meal-stats span:nth-child(2) svg { color: #b4baff; }
-.fpd-meal-stats span:nth-child(3) svg { color: #ffd166; }
+.fpd-meal-stats span:nth-child(1) svg { color: #ff9c80; }
+.fpd-meal-stats span:nth-child(2) svg { color: #ff8a5c; }
+.fpd-meal-stats span:nth-child(3) svg { color: #f2a93b; }
 
 .fpd-meal-actions {
     margin-top: auto;
@@ -606,7 +608,7 @@ body:has(.fpd-root) {
     align-items: center;
     justify-content: center;
 
-    background: rgba(5, 10, 30, 0.75);
+    background: rgba(20,17,15, 0.75);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
 
@@ -623,7 +625,7 @@ body:has(.fpd-root) {
 
     border-radius: 26px;
 
-    background: linear-gradient(180deg, #1f3a8a 0%, #12205a 100%);
+    background: linear-gradient(180deg, #2e2520 0%, #2e2520 100%);
     box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
 
     animation: fpdPop 0.28s cubic-bezier(0.2, 0.9, 0.3, 1);
@@ -671,8 +673,8 @@ body:has(.fpd-root) {
     box-sizing: border-box;
 
     box-shadow:
-        0 0 0 4px #12205a,
-        0 0 0 8px rgba(125, 176, 255, 0.35);
+        0 0 0 4px #2e2520,
+        0 0 0 8px rgba(255,138,92, 0.35);
 }
 .fpd-modal-avatar .fpd-avatar img {
     width: 100%;
@@ -700,11 +702,11 @@ body:has(.fpd-root) {
     border: none;
     border-radius: 50%;
 
-    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    background: linear-gradient(135deg, #c2441f, #a83a19);
     color: #ffffff;
     font-size: 14px;
 
-    box-shadow: 0 0 0 3px #12205a;
+    box-shadow: 0 0 0 3px #2e2520;
 
     cursor: pointer;
     z-index: 20;
@@ -748,8 +750,8 @@ body:has(.fpd-root) {
 
 .fpd-field > div:focus-within {
     background: rgba(255, 255, 255, 0.14);
-    border-color: #7db0ff;
-    box-shadow: 0 0 0 4px rgba(125, 176, 255, 0.18);
+    border-color: #ff8a5c;
+    box-shadow: 0 0 0 4px rgba(255,138,92, 0.18);
 }
 
 .fpd-field input {
@@ -802,7 +804,8 @@ body:has(.fpd-root) {
     width: min(420px, calc(100% - 40px));
     padding: 28px;
 
-    background: #178d6a;
+    background: #1f1a17;
+    border: 1px solid #3a302a;
     border-radius: 20px;
 
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
@@ -813,7 +816,7 @@ body:has(.fpd-root) {
 .fpd-edit-form h2 {
     margin: 0 0 22px;
     font-size: 24px;
-    color: #222;
+    color: #f6ebe2;
 }
 
 .fpd-edit-form input,
@@ -824,8 +827,10 @@ body:has(.fpd-root) {
     padding: 12px 14px;
     margin-bottom: 16px;
 
-    border: 1px solid #ddd;
+    border: 1px solid #4a3e36;
     border-radius: 10px;
+    background: #ffffff;
+    color: #2b1a12;
 
     font-size: 15px;
     font-family: inherit;
@@ -840,7 +845,7 @@ body:has(.fpd-root) {
 
 .fpd-edit-form input:focus,
 .fpd-edit-form textarea:focus {
-    border-color: #ff7a45;
+    border-color: #ff8a5c;
 }
 
 .fpd-edit-actions {
@@ -1015,4 +1020,29 @@ body:has(.fpd-root) {
     .fpd-modal {
         animation: none;
     }
+}
+
+
+/* ---------- PLATEFULL THEME ADDITIONS ---------- */
+
+.fpd-brand-name,
+.fpd-profile-info h1 {
+    font-family: var(--font-display, "Fraunces", Georgia, serif);
+}
+
+.fpd-meal-price {
+    font-size: 15px;
+    font-weight: 700;
+    color: #ff8a5c;
+}
+
+.fpd-link-btn {
+    padding: 0;
+    border: none;
+    background: none;
+    color: #ff8a5c;
+    font-size: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
 }
