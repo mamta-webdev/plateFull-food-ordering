@@ -185,7 +185,12 @@ async function uploadProfilePhoto(req, res) {
 }
 
 function logoutUser(req,res){
-    res.clearCookie("userToken")
+    res.clearCookie("userToken",{
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+        path: "/"
+    })
     res.status(200).json({
         message: "User Logged out successfully"
     })
@@ -280,7 +285,12 @@ console.log("FOOD PARTNER COLLECTION:", foodPartnerModel.collection.name);
 }
 
 function logoutfoodPartner(req,res){
-    res.clearCookie("token")
+    res.clearCookie("foodPartnerToken",{
+        httpOnly:true,
+        secure: true,
+        sameSite: "none",
+        path: "/"
+    });
         res.status(200).json({
             message: "food partner logged out successfully"
         })
