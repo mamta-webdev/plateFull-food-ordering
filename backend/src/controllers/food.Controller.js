@@ -29,6 +29,9 @@ async function createFood(req,res){
 
 async function getFoodItems(req, res) {
 
+    console.log("DATABASE:", foodmodel.db.name);
+console.log("COLLECTION:", foodmodel.collection.name);
+
     const foodItems = await foodmodel.find({})
 
     const foodItemsWithComments = await Promise.all(
