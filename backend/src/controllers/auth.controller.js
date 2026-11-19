@@ -285,11 +285,12 @@ console.log("FOOD PARTNER COLLECTION:", foodPartnerModel.collection.name);
 }
 
 function logoutFoodPartner(req,res){
-    res.clearCookie("foodPartnerToken",{
+    res.clearCookie("foodPartnerToken", "",{
         httpOnly:true,
         secure: true,
         sameSite: "none",
-        path: "/"
+        path: "/",
+        expires: new Date(0)
     });
         res.status(200).json({
             message: "food partner logged out successfully"
