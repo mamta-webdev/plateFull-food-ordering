@@ -96,7 +96,12 @@ async function updateMyProfile(req,res){
 }
 
 async function logoutFoodPartner(req,res){
-    res.clearCookie("foodPartnerToken")
+    res.clearCookie("foodPartnerToken",{
+        httpOnly:true,
+        secure:true,
+        sameSite:"none",
+        path:"/"
+    })
 
     return res.status(200).json({
         message: "Food Partner Logged out successfully"
