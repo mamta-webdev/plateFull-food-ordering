@@ -20,6 +20,6 @@ router.post("/user/profile/photo",authMiddleware.authUserMiddleware,upload.singl
 //food-partner auth api's
 router.post("/food-partner/register", upload.single("profileImage"), authController.registerfoodPartner)
 router.post("/food-partner/login", authController.loginfoodPartner)
-router.post("/food-partner/logout", authController.logoutfoodPartner)
+router.post("/food-partner/logout", authController.logoutFoodPartner)
 
 module.exports = router
