@@ -241,6 +241,8 @@ async function registerfoodPartner(req,res){
 async function loginfoodPartner(req,res){
     const {email, password, businessName, ownerName } = req.body
     console.log("Login email:", email)
+    console.log("FOOD PARTNER DB:", foodPartnerModel.db.name);
+console.log("FOOD PARTNER COLLECTION:", foodPartnerModel.collection.name);
     const foodPartner = await foodPartnerModel.findOne({ email })
     console.log("Food partner:", foodPartner)
     if(!foodPartner){
