@@ -1,4 +1,4 @@
-# 🍽️ PLATEFUL
+# 🍽️ PLATEFULL
 
 ### *Food Discovery. Reimagined.*
 
@@ -14,7 +14,7 @@ A **MERN stack food discovery and ordering platform** that brings **<u>video-bas
 
 ---
 
-## 📖 About Plateful
+## 📖 About Platefull
 
 Plateful brings **<u>food discovery and ordering</u>** together in one place. Instead of relying only on traditional food listings, users can explore a **<u>vertical video feed</u>**, discover dishes from food partners, view prices, **<u>save favourites</u>**, manage their cart, and proceed to checkout.
 
@@ -117,7 +117,7 @@ If you like **Plateful**, consider giving the repository a ⭐ on GitHub!
 
 <div align="center">
 
-### 🍽️ PLATEFUL
+### 🍽️ PLATEFULL
 
 **Discover food. Explore flavours. Find your next favourite.**
 
