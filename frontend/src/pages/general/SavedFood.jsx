@@ -132,61 +132,47 @@ function SavedFood() {
 
             ) : (
 
-                <div className="saved-reels-container">
+                
+<div className="saved-reels-container">
+  {savedFoods
+    .filter((item) => item.food)
+    .map((item) => {
+      return (
+        <div className="saved-reel" key={item._id}>
+          <video
+            ref={(element) => {
+              if (element) {
+                videoRefs.current.set(item._id, element);
+              } else {
+                videoRefs.current.delete(item._id);
+              }
+            }}
+            src={item.food.videoUrl}
+            className="saved-reel-video"
+            loop
+            muted
+            playsInline
+            preload="auto"
+          />
 
-                    {savedFoods.map((item) => {
+          <div className="saved-reel-actions">
+            <button className="saved-action-btn">
+              <span className="saved-action-icon">
+                <FontAwesomeIcon icon={faBookmark} />
+              </span>
+              <span>1</span>
+            </button>
+          </div>
 
-                        console.log("VIDEO URL:", item)
+          <div className="saved-reel-info">
+            <h3>{item.food.name}</h3>
+            <p>{item.food.description}</p>
+          </div>
+        </div>
+      );
+    })}
+</div>
 
-                        return (
-                            <div
-                                className="saved-reel"
-                                key={item._id}
-                            >
-
-                                <video
-                                    ref={(element) => {
-
-                                        if (element) {
-                                            videoRefs.current.set(item._id, element)
-                                        } else {
-                                            videoRefs.current.delete(item._id)
-                                        }
-
-                                    }}
-                                    src={item.food.videoUrl}
-                                    className="saved-reel-video"
-                                    loop
-                                    muted
-                                    playsInline
-                                    preload="auto"
-                                />
-
-                                <div className="saved-reel-actions">
-
-                                    <button className="saved-action-btn">
-                                        <span className="saved-action-icon">
-                                            <FontAwesomeIcon icon={faBookmark} />
-                                        </span>
-
-                                        <span>1</span>
-                                    </button>
-
-                                </div>
-
-                                <div className="saved-reel-info">
-
-                                    <h3>{item.food.name}</h3>
-
-                                    <p>{item.food.description}</p>
-
-                                </div>
-
-                            </div>
-                        )
-                    })}
-
-                </div>
 
             )}
 
