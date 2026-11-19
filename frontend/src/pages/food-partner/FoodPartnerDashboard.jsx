@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../styles/foodPartnerDashboard.css";
+import API_BASE from "../../config.js/api"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChartLine,
@@ -219,7 +220,7 @@ const FoodPartnerDashboard = () => {
     const fetchProfile = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/food-partner/profile",
+          `${API_BASE}/api/food-partner/profile`,
           { withCredentials: true },
         );
         console.log("DASHBOARD PROFILE RESPONSE:", response.data);

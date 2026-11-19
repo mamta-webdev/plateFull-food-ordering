@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../styles/checkout.css";
+import API_BASE from "../../config.js/api"
 
 const formatPrice = (amount) => {
   const value = Math.round((Number(amount) || 0) * 100) / 100;
@@ -39,7 +40,7 @@ const [orderSuccess, setOrderSuccess] = useState(null);
 
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/cart",
+          `${API_BASE}/api/cart`,
           { withCredentials: true }
         );
 

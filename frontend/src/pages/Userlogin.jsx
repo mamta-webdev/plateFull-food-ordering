@@ -2,6 +2,7 @@ import "../styles/auth.css";
 import "../styles/theme.css";
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
+import API_BASE from "../config.js/api"
 import toast from "react-hot-toast";
 
 function UserLogin() {
@@ -11,7 +12,7 @@ function UserLogin() {
 
     const email = e.target.email.value
     const password = e.target.password.value
-    const response = await axios.post("http://localhost:3000/api/auth/user/login",{
+    const response = await axios.post(`${API_BASE}/api/auth/user/login`,{
       email,password
     },{
       withCredentials : true

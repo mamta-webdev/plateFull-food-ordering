@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "../../styles/Home.css";
 import Comment from "./Comment";
+import API_BASE from "../../config.js/api"
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -44,7 +45,7 @@ const Home = () => {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/food/", {
+        const response =  await axios.get(`${API_BASE}/api/food/`,{
           withCredentials: true,
         });
 
@@ -94,7 +95,7 @@ const Home = () => {
     const checkUserLogin = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/auth/user/profile",
+          `${API_BASE}/api/auth/user/profile`,
           { withCredentials: true },
         );
 
@@ -110,7 +111,7 @@ const Home = () => {
   useEffect(() => {
     const checkFoodPartnerLogin = async () => {
       try {
-        await axios.get("http://localhost:3000/api/food-partner/profile", {
+        await axios.get(`${API_BASE}/api/food-partner/profile`, {
           withCredentials: true,
         });
 
@@ -210,7 +211,7 @@ const Home = () => {
 
   const handleFoodPartnerClick = async () => {
     try {
-      await axios.get("http://localhost:3000/api/food-partner/profile", {
+      await axios.get(`${API_BASE}/api/food-partner/profile`, {
         withCredentials: true,
       });
 
@@ -224,7 +225,7 @@ const Home = () => {
   const handleLike = async (item) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/food/like",
+        `${API_BASE}/api/food/like`,
         { foodId: item._id },
         { withCredentials: true },
       );
@@ -265,7 +266,7 @@ const Home = () => {
   const handleSave = async (foodId) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/food/save",
+        `${API_BASE}/api/food/save`,
         {
           foodId,
         },

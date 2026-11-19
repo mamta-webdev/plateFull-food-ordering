@@ -3,6 +3,7 @@ import "../styles/theme.css";
 import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
 import toast from "react-hot-toast";
+import API_BASE from "../config.js/api"
 
 function FoodPartnerLogin() {
   const navigate = useNavigate()
@@ -13,7 +14,7 @@ function FoodPartnerLogin() {
     const email = e.target.email.value
     const password = e.target.password.value
 
-    const response = await axios.post("http://localhost:3000/api/auth/food-partner/login",{
+    const response = await axios.post(`${API_BASE}/api/auth/food-partner/login`,{
       email, password
     },{
       withCredentials: true

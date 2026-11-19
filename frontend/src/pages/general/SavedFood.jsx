@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import API_BASE from "../../config.js/api"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
     faHouse,
@@ -21,7 +22,7 @@ function SavedFood() {
         try {
 
             const response = await axios.get(
-                "http://localhost:3000/api/food/save",
+            `${API_BASE}/api/food/save`,
                 {
                     withCredentials: true
                 }

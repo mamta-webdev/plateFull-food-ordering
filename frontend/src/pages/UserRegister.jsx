@@ -1,6 +1,7 @@
 import "../styles/auth.css";
 import "../styles/theme.css";
 import axios from 'axios'
+import API_BASE from "../config.js/api"
 import { useNavigate, Link } from "react-router-dom"
 
 function UserRegister() {
@@ -15,7 +16,7 @@ function UserRegister() {
     const password = e.target.password.value
 
 
-    const response = await axios.post('http://localhost:3000/api/auth/user/register',{
+    const response = await axios.post(`${API_BASE}/api/auth/user/register`,{
       name, email, password
     },{
       withCredentials: true

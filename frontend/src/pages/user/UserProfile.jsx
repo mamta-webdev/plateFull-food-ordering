@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import API_BASE from "../../config.js/api"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
@@ -27,7 +28,7 @@ import "../../styles/UserProfile.css";
    LOGOUT_PATH    -> your existing user logout route (uses logoutUser)
    LOGOUT_METHOD  -> "get" or "post", whichever your route uses
 ------------------------------------------------------------------- */
-const API_BASE = "http://localhost:3000";
+
 const GET_USER_PATH = "/api/auth/user/profile";
 const LOGOUT_PATH = "/api/auth/user/logout";
 const LOGOUT_METHOD = "get";
@@ -112,7 +113,6 @@ const UserProfile = () => {
         const response = await axios.get(`${API_BASE}${GET_USER_PATH}`, {
           withCredentials: true,
         });
-
         setUser(response.data.user || response.data);
       } catch (err) {
         setError(

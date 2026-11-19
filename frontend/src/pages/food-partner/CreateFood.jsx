@@ -1,6 +1,7 @@
 import "../../styles/createFood.css"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import API_BASE from "../../config.js/api"
 
 const MAX_DESCRIPTION = 300
 
@@ -38,7 +39,7 @@ const CreateFood = () => {
         try {
 
             const response = await axios.post(
-                "http://localhost:3000/api/food",
+                `${API_BASE}/api/food`,
                 formData,
                 {
                     withCredentials: true

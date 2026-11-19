@@ -1,6 +1,7 @@
 import "../styles/theme.css";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import API_BASE from "../config.js/api"
 
 function FoodPartnerRegister() {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ function FoodPartnerRegister() {
       formdata.append("profileImage", profileImage);
     }
     const response = await axios
-      .post("http://localhost:3000/api/auth/food-partner/register", formdata, {
+      .post(`${API_BASE}/api/auth/food-partner/register`, formdata, {
         withCredentials: true,
       })
       .then((response) => {

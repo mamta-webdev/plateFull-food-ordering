@@ -3,6 +3,7 @@ import "../../styles/profile.css";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import ChefProfile from "../../assets/chef-profile.jpg";
+import API_BASE from "../../config.js/api"
 
 const Profile = () => {
     const { id } = useParams();
@@ -17,7 +18,7 @@ const Profile = () => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:3000/api/food-partner/${id}`, {
+            .get(`${API_BASE}/api/food-partner/${id}`, {
                 withCredentials: true,
             })
             .then((response) => {

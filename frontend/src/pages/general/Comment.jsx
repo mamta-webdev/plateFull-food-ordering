@@ -2,6 +2,7 @@ import React from "react"
 import axios from "axios"
 import { useState, useEffect, useRef } from "react"
 import "../../styles/Comment.css"
+import API_BASE from "../../config.js/api"
 
 const AVATAR_COLORS = [
     ["#4f8cff", "#7a5cff"],
@@ -33,7 +34,7 @@ const Comment = (props) => {
     const fetchComments = async () => {
 
         const response = await axios.get(
-            `http://localhost:3000/api/food/get-comment/${foodId}`,
+            `${API_BASE}/api/food/get-comment/${foodId}`,
             { withCredentials: true }
         )
 

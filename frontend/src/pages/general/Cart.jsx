@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import API_BASE from "../../config.js/api"
 import {
     faChevronLeft,
     faCartShopping,
@@ -45,7 +46,7 @@ const Cart = () => {
         setError("")
 
         axios
-            .get("http://localhost:3000/api/cart", { withCredentials: true })
+            .get(`${API_BASE}/api/cart`, { withCredentials: true })
             .then((response) => {
                 // The backend sends cart: null when the cart is empty
                 setCart(response.data.cart || null)
