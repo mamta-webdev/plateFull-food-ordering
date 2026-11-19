@@ -296,4 +296,4 @@ function logoutFoodPartner(req,res){
         })
 }
 
-module.exports = { registerUser, loginUser, logoutUser, registerfoodPartner, loginfoodPartner, logoutfoodPartner, getMyProfile, updateMyProfile, uploadProfilePhoto}
+module.exports = { registerUser, loginUser, logoutUser, registerfoodPartner, loginfoodPartner, logoutFoodPartner, getMyProfile, updateMyProfile, uploadProfilePhoto}
