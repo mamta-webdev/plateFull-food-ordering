@@ -28,7 +28,7 @@ const PROFILE_FIELDS = [
   { key: "ownerName", label: "Owner Name", type: "text", icon: faUser },
   { key: "email", label: "Email", type: "email", icon: faEnvelope },
   { key: "address", label: "Address", type: "text", icon: faLocationDot },
-];
+]
 
 /* ---------- SMALL COMPONENTS ---------- */
 

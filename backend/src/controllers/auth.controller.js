@@ -284,7 +284,7 @@ console.log("FOOD PARTNER COLLECTION:", foodPartnerModel.collection.name);
     })
 }
 
-function logoutfoodPartner(req,res){
+function logoutFoodPartner(req,res){
     res.clearCookie("foodPartnerToken",{
         httpOnly:true,
         secure: true,
