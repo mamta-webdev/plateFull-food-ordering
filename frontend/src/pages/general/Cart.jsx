@@ -95,7 +95,7 @@ const handleQuantityChange = async (cartItemId, change) => {
 
     try {
         const response = await axios.put(
-            "http://localhost:3000/api/cart/update",
+            `${API_BASE}/api/cart/update`,
             {
                 cartItemId,
                 quantity: newQuantity,
@@ -130,7 +130,7 @@ const handleQuantityChange = async (cartItemId, change) => {
 const handleRemoveItem = async (cartItemId) => {
     try {
         const response = await axios.delete(
-            "http://localhost:3000/api/cart/remove",
+            `${API_BASE}/api/cart/remove`,
             {
                 data: { cartItemId },
                 withCredentials: true,

@@ -96,7 +96,7 @@ const Comment = (props) => {
         try {
 
             await axios.post(
-                "http://localhost:3000/api/food/add-comment",
+                `${API_BASE}/api/food/add-comment`,
                 {
                     foodId: foodId,
                     comment: commentText

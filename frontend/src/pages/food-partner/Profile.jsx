@@ -38,7 +38,7 @@ const Profile = () => {
             setCartMessage("");
 
             const response = await axios.post(
-                "http://localhost:3000/api/cart/add",
+                `${API_BASE}/api/cart/add`,
                 {
                     foodId: food._id,
                     quantity: 1,

@@ -242,7 +242,7 @@ const FoodPartnerDashboard = () => {
     if (!window.confirm(`Delete "${meal.name}"? This cannot be undone.`)) return;
     try {
       const response = await axios.delete(
-        `http://localhost:3000/api/food/delete/${meal.id}`,
+        `${API_BASE}/api/food/delete/${meal.id}`,
         { withCredentials: true },
       );
       // console.log("DELETE FOOD:", response.data)
@@ -255,7 +255,7 @@ const FoodPartnerDashboard = () => {
   const handleUpdateFood = async () => {
     try {
       const response = await axios.put(
-        `http://localhost:3000/api/food/update/${editingMeal.id}`,
+        `${API_BASE}/api/food/update/${editingMeal.id}`,
         {
           name: editingMeal.name,
           description: editingMeal.description,
@@ -286,7 +286,7 @@ const FoodPartnerDashboard = () => {
   const handleLogout = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/food-partner/logout",
+        `${API_BASE}/api/food-partner/logout`,
         {},
         { withCredentials: true },
       );
@@ -545,7 +545,7 @@ const FoodPartnerDashboard = () => {
               }
 
               const response = await fetch(
-                "http://localhost:3000/api/food-partner/profile",
+                `${API_BASE}/api/food-partner/profile`,
                 {
                   method: "PUT",
                   body: formData,

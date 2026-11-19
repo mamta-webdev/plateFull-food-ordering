@@ -63,7 +63,7 @@ const Home = () => {
     const fetchSavedVideos = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/food/save",
+          `${API_BASE}/api/food/save`,
           {
             withCredentials: true,
           },

@@ -117,7 +117,7 @@ const [orderSuccess, setOrderSuccess] = useState(null);
 
     try{
       const response  = await axios.post(
-        "http://localhost:3000/api/orders/checkout",
+        `${API_BASE}/api/orders/checkout`,
         {
           deliveryAddress: formData.address.trim(),
           phone: formData.phone.trim(),
