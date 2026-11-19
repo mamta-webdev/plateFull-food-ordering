@@ -227,6 +227,13 @@ const FoodPartnerDashboard = () => {
         setProfile(response.data.foodPartner);
         setMeals(response.data.foodItem || []);
       } catch (error) {
+         if (
+        error.response?.status === 401 ||
+        error.response?.status === 403
+      ) {
+        navigate("/food-partner/login", { replace: true });
+        return;
+      }
         console.log("DASHBOARD PROFILE ERROR:", error);
       }
     };
@@ -283,19 +290,20 @@ const FoodPartnerDashboard = () => {
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      const response = await axios.post(
-        `${API_BASE}/api/food-partner/logout`,
-        {},
-        { withCredentials: true },
-      );
-      // console.log("LOGOUT RESPONSE:", response.data)
-      navigate("/");
-    } catch (error) {
-      console.log("Logout error", error);
-    }
-  };
+ 
+const handleLogout = async () => {
+  try {
+    await axios.post(
+      `${API_BASE}/api/food-partner/logout`,
+      {},
+      { withCredentials: true }
+    );
+  } catch (error) {
+    console.log("Logout error:", error.response?.data || error);
+  } finally {
+    navigate("/food-partner/login", { replace: true });
+  }
+};
 
   
   const totalMeals = meals.length;
