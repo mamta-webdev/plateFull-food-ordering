@@ -74,7 +74,9 @@ const Home = () => {
         const savedMap = {};
 
         savedFoods.forEach((item) => {
-          savedMap[item.food._id] = 1;
+          if (item.food?._id) {
+    savedMap[item.food._id] = 1;
+  }
         });
 
         setSavedVideos(savedMap);
